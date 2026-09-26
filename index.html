@@ -4,10 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stravelakis documentation</title>
-  <meta name="description" content="Plain-English guides for the open-source projects published by Stravelakis: Image Forge, MyStory and more.">
+  <meta name="description" content="Plain-English guides for small, honest open-source tools by Stravelakis: Image Forge, My Story and BlankStare. Every guide in three reading levels.">
   <link rel="canonical" href="https://docs.stravelakis.com/">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#0f1b2d">
+  <meta name="theme-color" content="#070a1b">
+  <meta name="author" content="Stravelakis">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Stravelakis documentation">
   <meta property="og:title" content="Stravelakis documentation">
@@ -16,47 +17,188 @@
   <meta property="og:image" content="https://docs.stravelakis.com/og-image.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Stravelakis documentation: plain-English guides for small, honest open-source tools">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Stravelakis documentation">
+  <meta name="twitter:description" content="Plain-English guides for small, honest open-source tools.">
   <meta name="twitter:image" content="https://docs.stravelakis.com/og-image.png">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"WebSite","name":"Stravelakis documentation","url":"https://docs.stravelakis.com/","publisher":{"@type":"Person","name":"Stravelakis","url":"https://github.com/Stravelakis"}}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { color-scheme: light dark; --ink:#0f1b2d; --paper:#f4faf8; --card:#ffffff; --line:#d5e6e1; --accent:#0f8f7e; --muted:#51606d; }
-    @media (prefers-color-scheme: dark) { :root { --ink:#e8f6f3; --paper:#0f1b2d; --card:#14253a; --line:#23405a; --accent:#2dd4bf; --muted:#9fb3c2; } }
-    body { margin:0; font:16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--paper); }
-    main { max-width:760px; margin:0 auto; padding:56px 16px 80px; }
-    h1 { font-size:2rem; margin:0 0 6px; }
-    p.lead { color:var(--muted); margin:0 0 36px; }
+    :root {
+      --navy-950:#070a1b; --navy-900:#0c1130; --navy-800:#151c3f; --navy-500:#344080;
+      --teal-500:#42a9a4; --mint-400:#82d8b7;
+      --bg:var(--navy-950); --text:#e8ecf8; --dim:#a4adca;
+      --surface:color-mix(in srgb, var(--navy-800) 78%, transparent);
+      --border:color-mix(in srgb, var(--navy-500) 55%, transparent);
+      --accent:var(--mint-400);
+      --ease:cubic-bezier(.22,1,.36,1);
+      color-scheme: dark;
+    }
+    *,*::before,*::after { box-sizing:border-box; }
+    html,body { margin:0; }
+    body { background:var(--bg); color:var(--text); font:16px/1.65 "Sora", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
     a { color:var(--accent); }
-    ul { list-style:none; padding:0; margin:0; }
-    li { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; margin:0 0 14px; }
-    li a.name { font-weight:650; font-size:1.15rem; text-decoration:none; }
-    li p { margin:6px 0 0; color:var(--muted); }
-    li .links { margin-top:8px; font-size:.92rem; }
-    li .links a { margin-right:14px; }
-    footer { margin-top:48px; color:var(--muted); font-size:.9rem; }
+    #dots { position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
+    .glow { position:fixed; width:820px; height:820px; left:50%; top:-420px; transform:translateX(-50%); background:radial-gradient(closest-side, color-mix(in srgb, var(--teal-500) 30%, transparent), transparent); z-index:0; pointer-events:none; }
+    .wrap { position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 16px; }
+    header.top { display:flex; align-items:center; justify-content:space-between; padding:22px 0; }
+    .brand { display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:600; letter-spacing:.2px; }
+    .brand img { width:30px; height:30px; }
+    .top nav a { color:var(--dim); text-decoration:none; margin-left:20px; font-size:.95rem; }
+    .top nav a:hover { color:var(--text); }
+
+    .hero { text-align:center; padding:72px 0 56px; }
+    .eyebrow { display:inline-block; padding:6px 14px; border:1px solid var(--border); border-radius:999px; color:var(--accent); font-size:.8rem; letter-spacing:2px; text-transform:uppercase; background:color-mix(in srgb, var(--navy-900) 70%, transparent); }
+    h1 { font-size:clamp(2.2rem, 6vw, 3.8rem); line-height:1.08; margin:22px auto 16px; max-width:15ch; font-weight:700; letter-spacing:-.02em; }
+    h1 span { background:linear-gradient(90deg, var(--mint-400), var(--teal-500)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .lead { color:var(--dim); font-size:1.15rem; max-width:60ch; margin:0 auto; }
+    .levels { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:28px; }
+    .levels span { padding:8px 14px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:.9rem; }
+    .levels b { color:var(--accent); font-weight:600; }
+
+    h2 { font-size:1.5rem; margin:40px 0 18px; letter-spacing:-.01em; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
+    .card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:20px; overflow:hidden; backdrop-filter:blur(6px); transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
+    .card:hover { transform:translateY(-4px); border-color:color-mix(in srgb, var(--mint-400) 55%, transparent); box-shadow:0 18px 50px -20px color-mix(in srgb, var(--mint-400) 35%, transparent); }
+    .card .shot { aspect-ratio:1200/630; width:100%; display:block; object-fit:cover; background:var(--navy-900); border-bottom:1px solid var(--border); }
+    .card .ph { aspect-ratio:1200/630; display:grid; place-items:center; background:linear-gradient(135deg, var(--navy-800), var(--navy-900)); border-bottom:1px solid var(--border); font-size:1.6rem; font-weight:700; color:var(--accent); letter-spacing:-.01em; }
+    .card .body { padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
+    .card h3 { margin:0; font-size:1.2rem; }
+    .card h3 a { color:var(--text); text-decoration:none; }
+    .card h3 a::after { content:""; position:absolute; inset:0; }
+    .card { position:relative; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 10px; }
+    .tags span { font-size:.72rem; padding:3px 9px; border-radius:999px; background:color-mix(in srgb, var(--mint-400) 12%, transparent); color:var(--accent); }
+    .card p { color:var(--dim); margin:0 0 16px; font-size:.95rem; flex:1; }
+    .links { display:flex; flex-wrap:wrap; gap:8px; position:relative; z-index:2; }
+    .btn { display:inline-block; padding:8px 14px; border-radius:10px; font-size:.88rem; text-decoration:none; border:1px solid var(--border); color:var(--text); transition:background .2s, border-color .2s; }
+    .btn:hover { border-color:var(--accent); }
+    .btn.primary { background:var(--accent); color:var(--navy-950); border-color:var(--accent); font-weight:600; }
+    .btn.primary:hover { background:#9be6c7; }
+
+    .promises { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:8px; }
+    .promise { padding:18px; border-radius:16px; border:1px solid var(--border); background:color-mix(in srgb, var(--navy-900) 70%, transparent); }
+    .promise b { display:block; margin-bottom:4px; }
+    .promise span { color:var(--dim); font-size:.92rem; }
+
+    footer { margin:72px 0 40px; padding-top:24px; border-top:1px solid var(--border); color:var(--dim); font-size:.9rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+    @media (max-width:560px) { .top nav a:not(:last-child) { display:none; } .hero { padding:48px 0 36px; } }
+    @media (prefers-reduced-motion: reduce) { .card { transition:none; } .card:hover { transform:none; } }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Stravelakis documentation</h1>
-    <p class="lead">Plain-English guides for small, honest open-source tools. Each one explains itself three ways: for developers, in plain English, and for a five-year-old.</p>
-    <ul>
-      <li>
-        <a class="name" href="/image-forge/">Image Forge</a>
-        <p>Make hundreds of AI pictures from one sentence or a spreadsheet, with your own keys. Free engine out of the box; never spends money without asking. Windows app.</p>
-        <div class="links"><a href="/image-forge/">Guides</a><a href="https://github.com/Stravelakis/image-forge/releases/latest">Download</a><a href="https://github.com/Stravelakis/image-forge">Source</a></div>
-      </li>
-      <li>
-        <a class="name" href="/mystory/">MyStory</a>
-        <p>A private, self-hosted journal in Greek or English. Every word stays in plain files on your own machine, ordered by when it happened.</p>
-        <div class="links"><a href="/mystory/">Guides</a><a href="https://github.com/Stravelakis/mystory">Source</a></div>
-      </li>
-      <li>
-        <a class="name" href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">BlankStare</a>
-        <p>Turns overly complex code-speak into plain English.</p>
-        <div class="links"><a href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">Source</a></div>
-      </li>
-    </ul>
-    <footer>All projects on <a href="https://github.com/Stravelakis">GitHub</a>.</footer>
-  </main>
+  <canvas id="dots" aria-hidden="true"></canvas>
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="/"><img src="/favicon.svg" alt="">Stravelakis docs</a>
+      <nav><a href="#projects">Projects</a><a href="#promise">The promise</a><a href="https://github.com/Stravelakis">GitHub</a></nav>
+    </header>
+
+    <section class="hero">
+      <span class="eyebrow">docs.stravelakis.com</span>
+      <h1>Guides you can <span>actually read</span></h1>
+      <p class="lead">Documentation for small, honest open-source tools. No jargon for the sake of it, no inflated claims, and every limitation written down.</p>
+      <div class="levels" aria-label="Every guide comes in three reading levels">
+        <span><b>Dev</b> · for developers</span>
+        <span><b>Plain</b> · plain English</span>
+        <span><b>ELI5</b> · explain it like I'm five</span>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <img class="shot" src="/image-forge/og-image.png" alt="Image Forge" loading="lazy" width="1200" height="630">
+          <div class="body">
+            <h3><a href="/image-forge/">Image Forge</a></h3>
+            <div class="tags"><span>Windows app</span><span>AI images</span><span>Free engine built in</span></div>
+            <p>Make hundreds of AI pictures from one sentence or a spreadsheet, with your own keys. Never spends money without asking. Updates itself; opens in a window or your browser.</p>
+            <div class="links">
+              <a class="btn primary" href="/image-forge/">Read the guides</a>
+              <a class="btn" href="https://github.com/Stravelakis/image-forge/releases/latest">Download</a>
+              <a class="btn" href="https://github.com/Stravelakis/image-forge">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <img class="shot" src="/mystory/og-image.png" alt="My Story" loading="lazy" width="1200" height="630">
+          <div class="body">
+            <h3><a href="/mystory/">My Story</a></h3>
+            <div class="tags"><span>Self-hosted</span><span>Greek &amp; English</span><span>Private</span></div>
+            <p>A private journal: speak or write, keep every word in plain files on your own machine, order your life by when it happened, and name what happened with quotes.</p>
+            <div class="links">
+              <a class="btn primary" href="/mystory/">Read the guides</a>
+              <a class="btn" href="https://github.com/Stravelakis/mystory">Source</a>
+            </div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="ph" aria-hidden="true">BlankStare</div>
+          <div class="body">
+            <h3><a href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">BlankStare</a></h3>
+            <div class="tags"><span>Translator</span><span>Dev → English</span></div>
+            <p>Your personal translator for terminal-induced confusion: turns overly complex code-speak into plain English. Guides coming soon.</p>
+            <div class="links">
+              <a class="btn primary" href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">Source</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="promise">
+      <h2>The promise every project keeps</h2>
+      <div class="promises">
+        <div class="promise"><b>Free first</b><span>A free way in, always. Paid options are optional and never gated behind signups you don't need.</span></div>
+        <div class="promise"><b>Never spends without asking</b><span>Anything that costs money stops and shows the price first.</span></div>
+        <div class="promise"><b>Your data stays yours</b><span>Keys and files live on your machine and go only where you send them.</span></div>
+        <div class="promise"><b>Limits in writing</b><span>What doesn't work yet is in the docs, under a heading that admits it.</span></div>
+      </div>
+    </section>
+
+    <footer>
+      <span>© Stravelakis · open source</span>
+      <span><a href="https://github.com/Stravelakis">github.com/Stravelakis</a></span>
+    </footer>
+  </div>
+
+  <script>
+    // A quiet field of dots that drifts toward the pointer. Stops when the
+    // tab is hidden and does nothing at all for reduced-motion readers.
+    (() => {
+      const c = document.getElementById("dots"), x = c.getContext("2d");
+      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let w, h, dpr, pts = [], mx = -1e4, my = -1e4, raf;
+      const size = () => {
+        dpr = Math.min(devicePixelRatio || 1, 2);
+        w = c.width = innerWidth * dpr; h = c.height = innerHeight * dpr;
+        pts = []; const gap = 34 * dpr;
+        for (let y = gap / 2; y < h; y += gap) for (let X = gap / 2; X < w; X += gap) pts.push({ x: X, y, ox: X, oy: y });
+      };
+      const draw = () => {
+        x.clearRect(0, 0, w, h);
+        for (const p of pts) {
+          const dx = mx - p.ox, dy = my - p.oy, d = Math.hypot(dx, dy), r = 160 * dpr;
+          const k = d < r ? (1 - d / r) : 0;
+          p.x += (p.ox + dx * k * 0.18 - p.x) * 0.12; p.y += (p.oy + dy * k * 0.18 - p.y) * 0.12;
+          x.fillStyle = k ? `rgba(130,216,183,${0.18 + k * 0.6})` : "rgba(125,137,214,0.16)";
+          x.beginPath(); x.arc(p.x, p.y, (1.1 + k * 1.6) * dpr, 0, 6.283); x.fill();
+        }
+        if (!still) raf = requestAnimationFrame(draw);
+      };
+      addEventListener("resize", () => { size(); if (still) draw(); });
+      addEventListener("pointermove", (e) => { mx = e.clientX * dpr; my = e.clientY * dpr; });
+      addEventListener("pointerleave", () => { mx = my = -1e4; });
+      document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden && !still) draw(); });
+      size(); draw();
+    })();
+  </script>
 </body>
 </html>
