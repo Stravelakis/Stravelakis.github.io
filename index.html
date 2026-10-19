@@ -171,6 +171,40 @@
   </div>
 
   <script>
+    // Portfolio hub (repo standards §8): every public Stravelakis repo tagged
+    // with the GitHub topic "showcase" gets a card here automatically. Cards
+    // written by hand above stay as they are; this only adds the missing ones.
+    (async () => {
+      const grid = document.querySelector("#projects .grid");
+      const have = new Set([...grid.querySelectorAll('a[href*="github.com/Stravelakis/"]')]
+        .map((a) => a.href.split("github.com/Stravelakis/")[1].split(/[/?#]/)[0].toLowerCase()));
+      const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+      try {
+        const res = await fetch("https://api.github.com/search/repositories?q=org:Stravelakis+topic:showcase+is:public&sort=updated&per_page=50", { headers: { Accept: "application/vnd.github+json" } });
+        if (!res.ok) return;
+        const { items = [] } = await res.json();
+        for (const r of items) {
+          if (have.has(r.name.toLowerCase())) continue;
+          const docs = r.homepage || `/${r.name}/`;
+          const tags = (r.topics || []).filter((t) => t !== "showcase").slice(0, 3);
+          const card = document.createElement("article");
+          card.className = "card";
+          card.innerHTML = `
+            <img class="shot" src="https://opengraph.githubassets.com/1/${esc(r.full_name)}" alt="${esc(r.name)}" loading="lazy" width="1200" height="630">
+            <div class="body">
+              <h3><a href="${esc(docs)}">${esc(r.name.replace(/[-_]/g, " "))}</a></h3>
+              ${tags.length ? `<div class="tags">${tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
+              <p>${esc(r.description || "")}</p>
+              <div class="links">
+                <a class="btn primary" href="${esc(docs)}">Try it now</a>
+                <a class="btn" href="${esc(r.html_url)}">Source</a>
+              </div>
+            </div>`;
+          grid.append(card);
+        }
+      } catch (e) { /* offline or rate-limited: the hand-written cards still show */ }
+    })();
+
     // A quiet field of dots that drifts toward the pointer. Stops when the
     // tab is hidden and does nothing at all for reduced-motion readers.
     (() => {
