@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Research Forge: docs</title>
+<meta name="description" content="Research Forge looks each name on your list up on the web and keeps only the facts it can prove, with the page and the exact sentence for every one.">
+<link rel="canonical" href="https://docs.stravelakis.com/research-forge/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#080b19">
+<meta name="author" content="Stravelakis">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stravelakis documentation">
+<meta property="og:title" content="Research Forge: docs">
+<meta property="og:description" content="Research Forge looks each name on your list up on the web and keeps only the facts it can prove, with the page and the exact sentence for every one.">
+<meta property="og:url" content="https://docs.stravelakis.com/research-forge/">
+<meta property="og:image" content="https://docs.stravelakis.com/research-forge/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Research Forge: Give it a list of names. It keeps only the facts it can prove.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Research Forge: docs">
+<meta name="twitter:description" content="Research Forge looks each name on your list up on the web and keeps only the facts it can prove, with the page and the exact sentence for every one.">
+<meta name="twitter:image" content="https://docs.stravelakis.com/research-forge/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs.css">
+</head>
+<body>
+<canvas id="dots" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<nav class="pairing-bar" aria-label="Stravelakis sites"><a class="pairing-link" href="https://stravelakis.com/">&larr; stravelakis.com</a><a class="pairing-link" href="https://docs.stravelakis.com/">All docs</a></nav>
+<main class="wrap">
+<section class="frame hero">
+<span class="pill warm"><i></i>On request</span>
+<h1>Research Forge</h1>
+<p class="lead">Give it a list of names. It keeps only the facts it can prove.</p>
+<div class="btns"><a class="btn primary" href="https://stravelakis.com/#s-contact">Ask for it</a><a class="btn" href="https://stravelakis.com/project/research-forge/">Project page</a><a class="btn" href="/">All docs</a></div>
+</section>
+<section class="frame"><h2>What it does</h2><p>You give it a task (what kind of thing to research and which fields you want, for example the phone, website and opening hours of vets) and a list of names. For each name it searches the web, reads the pages, and keeps a fact <strong>only when the exact quote is on a page it read in that run</strong>.</p>
+<p>Then a writer turns the proven facts into a Greek and an English description, and it is not allowed to add any number that is not in the facts. Whatever it could not prove stays empty and is listed as missing, with a hint of where a person could look next.</p>
+<table><tr><th>Without this</th><th>With this</th></tr><tr><td>Copy-pasting phone numbers and hours from ten sites per business</td><td>One request researches the whole list on its own</td></tr><tr><td>AI answers that sound right but are made up</td><td>Every fact comes with the page and the exact sentence it was read from</td></tr></table></section>
+<section class="frame"><h2>See it</h2><div class="shots">
+<figure><img src="screens/ask.jpg" alt="Research Forge Ask screen: a plain-words request box" loading="lazy" width="1440" height="900"><figcaption>Ask in plain words. It writes a plan; nothing runs until you approve it.</figcaption></figure>
+<figure><img src="screens/jobs-map.jpg" alt="Research Forge Jobs screen listing finished research jobs" loading="lazy" width="1440" height="900"><figcaption>Jobs: everything researched, with sources you can click.</figcaption></figure>
+<figure><img src="screens/models-keys.jpg" alt="Research Forge Models and keys screen showing live model health" loading="lazy" width="1440" height="900"><figcaption>Which model does which job, and how each one has been doing in the last 24 hours.</figcaption></figure></div></section>
+<section class="frame"><h2>The screens</h2><table><tr><th>Screen</th><th>What it is for</th></tr>
+<tr><td>Ask</td><td>Type a request in plain words. It becomes a draft plan. Nothing runs until you approve it.</td></tr>
+<tr><td>Projects</td><td>Your task configs and drafts waiting for approval.</td></tr>
+<tr><td>Jobs &amp; map</td><td>Running and finished batches, results on a map, download as JSON or CSV.</td></tr>
+<tr><td>Quick tools</td><td>One-off web search, read a page, find a place, research one thing now.</td></tr>
+<tr><td>Models &amp; keys</td><td>Which model does which job, keys per provider, live health.</td></tr>
+<tr><td>Fix list</td><td>Problems reported by you or by AI agents, and the quality score over time.</td></tr></table></section>
+<section class="frame"><h2>How it stays honest and reliable</h2><div class="cards"><div class="card"><h3>Proof or nothing</h3><p>A fact counts only with its page and its exact sentence. Coordinates come only from OpenStreetMap.</p></div><div class="card"><h3>Six jobs, each with fallbacks</h3><p>Agent, extract, writer, planner, discover and propose each have their own model order. If one model fails or is rate limited, the next takes over.</p></div><div class="card"><h3>Crash-safe batches</h3><p>A batch splits into one unit per name. Workers take units with a lease, so a restart never loses work. A watchdog stops a stalled unit and gives up after three tries.</p></div><div class="card"><h3>Memory of past research</h3><p>Verified findings are stored so you can ask in plain words later. A hit is a lead: check its source before use.</p></div><div class="card"><h3>Reports</h3><p>A written report for a project: summary, numbered findings, a comparison table, and a source link on every value.</p></div><div class="card"><h3>Daily self-check</h3><p>Every morning it tests every part and files a problem report if something broke.</p></div></div></section>
+<section class="frame"><h2>Use it from AI helpers</h2><p>Every screen's work is also a tool that AI agents can call over MCP (a plug that lets an AI helper use a tool). Tools that spend a day of free allowance, such as starting a big batch, need your OK first.</p></section>
+<section class="frame"><h2>Who it is for</h2><ul><li>Anyone who needs checked facts about many named things (businesses, places, products) with a source on every value.</li><li>People who build with AI helpers and want research they can trust, not guesses.</li></ul>
+<p class="note">It runs on your own small server, keeps its keys there, and has no tracking. It uses free AI models and free allowances, so cost per question is nothing; the limit is how many questions those free services accept per day.</p></section>
+<section class="frame"><h2>How to get it</h2><p>This one is <strong>on request</strong>. The code is private for now, so there is no public download.</p>
+<p>Tell me what you would use it for, and I will tell you what is possible.</p>
+<div class="btns"><a class="btn primary" href="https://stravelakis.com/#s-contact">Ask for it</a></div><p>Licence: Apache-2.0. Version 0.1.0.</p></section>
+</main>
+<footer><span>&copy; Stravelakis</span><span><a href="https://github.com/Stravelakis">github.com/Stravelakis</a> &middot; <a href="https://docs.stravelakis.com/">All docs</a></span></footer>
+<script src="/docs.js" defer></script>
+</body>
+</html>

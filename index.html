@@ -1,239 +1,139 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Stravelakis documentation</title>
-  <meta name="description" content="Plain-English guides for small, honest open-source tools by Stravelakis: Image Forge, My Story and BlankStare. Every guide in three reading levels.">
-  <link rel="canonical" href="https://docs.stravelakis.com/">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#070a1b">
-  <meta name="author" content="Stravelakis">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="Stravelakis documentation">
-  <meta property="og:title" content="Stravelakis documentation">
-  <meta property="og:description" content="Plain-English guides for small, honest open-source tools.">
-  <meta property="og:url" content="https://docs.stravelakis.com/">
-  <meta property="og:image" content="https://docs.stravelakis.com/og-image.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Stravelakis documentation: plain-English guides for small, honest open-source tools">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Stravelakis documentation">
-  <meta name="twitter:description" content="Plain-English guides for small, honest open-source tools.">
-  <meta name="twitter:image" content="https://docs.stravelakis.com/og-image.png">
-  <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebSite","name":"Stravelakis documentation","url":"https://docs.stravelakis.com/","publisher":{"@type":"Person","name":"Stravelakis","url":"https://github.com/Stravelakis"}}
-  </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --navy-950:#070a1b; --navy-900:#0c1130; --navy-800:#151c3f; --navy-500:#344080;
-      --teal-500:#42a9a4; --mint-400:#82d8b7;
-      --bg:var(--navy-950); --text:#e8ecf8; --dim:#a4adca;
-      --surface:color-mix(in srgb, var(--navy-800) 78%, transparent);
-      --border:color-mix(in srgb, var(--navy-500) 55%, transparent);
-      --accent:var(--mint-400);
-      --ease:cubic-bezier(.22,1,.36,1);
-      color-scheme: dark;
-    }
-    *,*::before,*::after { box-sizing:border-box; }
-    html,body { margin:0; }
-    body { background:var(--bg); color:var(--text); font:16px/1.65 "Sora", system-ui, -apple-system, "Segoe UI", sans-serif; -webkit-font-smoothing:antialiased; overflow-x:hidden; }
-    a { color:var(--accent); }
-    #dots { position:fixed; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; }
-    .glow { position:fixed; width:820px; height:820px; left:50%; top:-420px; transform:translateX(-50%); background:radial-gradient(closest-side, color-mix(in srgb, var(--teal-500) 30%, transparent), transparent); z-index:0; pointer-events:none; }
-    .wrap { position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 16px; }
-    header.top { display:flex; align-items:center; justify-content:space-between; padding:22px 0; }
-    .brand { display:flex; align-items:center; gap:10px; color:var(--text); text-decoration:none; font-weight:600; letter-spacing:.2px; }
-    .brand img { width:30px; height:30px; }
-    .top nav a { color:var(--dim); text-decoration:none; margin-left:20px; font-size:.95rem; }
-    .top nav a:hover { color:var(--text); }
-
-    .hero { text-align:center; padding:72px 0 56px; }
-    .eyebrow { display:inline-block; padding:6px 14px; border:1px solid var(--border); border-radius:999px; color:var(--accent); font-size:.8rem; letter-spacing:2px; text-transform:uppercase; background:color-mix(in srgb, var(--navy-900) 70%, transparent); }
-    h1 { font-size:clamp(2.2rem, 6vw, 3.8rem); line-height:1.08; margin:22px auto 16px; max-width:15ch; font-weight:700; letter-spacing:-.02em; }
-    h1 span { background:linear-gradient(90deg, var(--mint-400), var(--teal-500)); -webkit-background-clip:text; background-clip:text; color:transparent; }
-    .lead { color:var(--dim); font-size:1.15rem; max-width:60ch; margin:0 auto; }
-    .levels { display:flex; justify-content:center; flex-wrap:wrap; gap:10px; margin-top:28px; }
-    .levels span { padding:8px 14px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-size:.9rem; }
-    .levels b { color:var(--accent); font-weight:600; }
-
-    h2 { font-size:1.5rem; margin:40px 0 18px; letter-spacing:-.01em; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:20px; }
-    .card { display:flex; flex-direction:column; background:var(--surface); border:1px solid var(--border); border-radius:20px; overflow:hidden; backdrop-filter:blur(6px); transition:transform .35s var(--ease), border-color .35s var(--ease), box-shadow .35s var(--ease); }
-    .card:hover { transform:translateY(-4px); border-color:color-mix(in srgb, var(--mint-400) 55%, transparent); box-shadow:0 18px 50px -20px color-mix(in srgb, var(--mint-400) 35%, transparent); }
-    .card .shot { aspect-ratio:1200/630; width:100%; height:auto; display:block; object-fit:cover; background:var(--navy-900); border-bottom:1px solid var(--border); }
-    .card .ph { aspect-ratio:1200/630; display:grid; place-items:center; background:linear-gradient(135deg, var(--navy-800), var(--navy-900)); border-bottom:1px solid var(--border); font-size:1.6rem; font-weight:700; color:var(--accent); letter-spacing:-.01em; }
-    .card .body { padding:18px 20px 20px; display:flex; flex-direction:column; flex:1; }
-    .card h3 { margin:0; font-size:1.2rem; }
-    .card h3 a { color:var(--text); text-decoration:none; }
-    .card h3 a::after { content:""; position:absolute; inset:0; }
-    .card { position:relative; }
-    .tags { display:flex; flex-wrap:wrap; gap:6px; margin:8px 0 10px; }
-    .tags span { font-size:.72rem; padding:3px 9px; border-radius:999px; background:color-mix(in srgb, var(--mint-400) 12%, transparent); color:var(--accent); }
-    .card p { color:var(--dim); margin:0 0 16px; font-size:.95rem; flex:1; }
-    .links { display:flex; flex-wrap:wrap; gap:8px; position:relative; z-index:2; }
-    .btn { display:inline-block; padding:8px 14px; border-radius:10px; font-size:.88rem; text-decoration:none; border:1px solid var(--border); color:var(--text); transition:background .2s, border-color .2s; }
-    .btn:hover { border-color:var(--accent); }
-    .btn.primary { background:var(--accent); color:var(--navy-950); border-color:var(--accent); font-weight:600; }
-    .btn.primary:hover { background:#9be6c7; }
-
-    .promises { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:16px; margin-top:8px; }
-    .promise { padding:18px; border-radius:16px; border:1px solid var(--border); background:color-mix(in srgb, var(--navy-900) 70%, transparent); }
-    .promise b { display:block; margin-bottom:4px; }
-    .promise span { color:var(--dim); font-size:.92rem; }
-
-    footer { margin:72px 0 40px; padding-top:24px; border-top:1px solid var(--border); color:var(--dim); font-size:.9rem; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
-    @media (max-width:560px) { .top nav a:not(:last-child) { display:none; } .hero { padding:48px 0 36px; } }
-    @media (prefers-reduced-motion: reduce) { .card { transition:none; } .card:hover { transform:none; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stravelakis documentation</title>
+<meta name="description" content="Plain-English guides for small, honest tools by Stravelakis: Image Forge, My Story, BlankStare, Video Forge, Dog Park Weather, infra-guardian, The Nein, Research Forge and Open Animations.">
+<link rel="canonical" href="https://docs.stravelakis.com/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#080b19">
+<meta name="author" content="Stravelakis">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stravelakis documentation">
+<meta property="og:title" content="Stravelakis documentation">
+<meta property="og:description" content="Plain-English guides for small, honest tools by Stravelakis: Image Forge, My Story, BlankStare, Video Forge, Dog Park Weather, infra-guardian, The Nein, Research Forge and Open Animations.">
+<meta property="og:url" content="https://docs.stravelakis.com/">
+<meta property="og:image" content="https://docs.stravelakis.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Stravelakis documentation: plain-English guides for small, honest tools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stravelakis documentation">
+<meta name="twitter:description" content="Plain-English guides for small, honest tools by Stravelakis: Image Forge, My Story, BlankStare, Video Forge, Dog Park Weather, infra-guardian, The Nein, Research Forge and Open Animations.">
+<meta name="twitter:image" content="https://docs.stravelakis.com/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Stravelakis documentation","url":"https://docs.stravelakis.com/","publisher":{"@type":"Person","name":"Stravelakis","url":"https://github.com/Stravelakis"}}</script>
 </head>
 <body>
-  <canvas id="dots" aria-hidden="true"></canvas>
-  <div class="glow" aria-hidden="true"></div>
-  <div class="wrap">
-    <header class="top">
-      <a class="brand" href="/"><img src="/favicon.svg" alt="">Stravelakis docs</a>
-      <nav><a href="#projects">Projects</a><a href="#promise">The promise</a><a href="https://github.com/Stravelakis">GitHub</a></nav>
-    </header>
-
-    <section class="hero">
-      <span class="eyebrow">docs.stravelakis.com</span>
-      <h1>Guides you can <span>actually read</span></h1>
-      <p class="lead">Documentation for small, honest open-source tools. No jargon for the sake of it, no inflated claims, and every limitation written down.</p>
-      <div class="levels" aria-label="Every guide comes in three reading levels">
-        <span><b>Dev</b> · for developers</span>
-        <span><b>Plain</b> · plain English</span>
-        <span><b>ELI5</b> · explain it like I'm five</span>
-      </div>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <img class="shot" src="/image-forge/og-image.png" alt="Image Forge" loading="lazy" width="1200" height="630">
-          <div class="body">
-            <h3><a href="/image-forge/">Image Forge</a></h3>
-            <div class="tags"><span>Windows app</span><span>AI images</span><span>Free engine built in</span></div>
-            <p>Make hundreds of AI pictures from one sentence or a spreadsheet, with your own keys. Never spends money without asking. Updates itself; opens in a window or your browser.</p>
-            <div class="links">
-              <a class="btn primary" href="/image-forge/">Read the guides</a>
-              <a class="btn" href="https://github.com/Stravelakis/image-forge/releases/latest">Download</a>
-              <a class="btn" href="https://github.com/Stravelakis/image-forge">Source</a>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <img class="shot" src="/mystory/og-image.png" alt="My Story" loading="lazy" width="1200" height="630">
-          <div class="body">
-            <h3><a href="/mystory/">My Story</a></h3>
-            <div class="tags"><span>Self-hosted</span><span>Greek &amp; English</span><span>Private</span></div>
-            <p>A private journal: speak or write, keep every word in plain files on your own machine, order your life by when it happened, and name what happened with quotes.</p>
-            <div class="links">
-              <a class="btn primary" href="/mystory/">Read the guides</a>
-              <a class="btn" href="https://github.com/Stravelakis/mystory">Source</a>
-            </div>
-          </div>
-        </article>
-        <article class="card">
-          <img class="shot" src="/BlankStare-Dev-English-to-English/og-image.png" alt="BlankStare" loading="lazy" width="1200" height="630">
-          <div class="body">
-            <h3><a href="/BlankStare-Dev-English-to-English/">BlankStare</a></h3>
-            <div class="tags"><span>Chrome extension</span><span>Dev → English</span><span>Free key</span></div>
-            <p>Your personal translator for terminal-induced confusion: turns overly complex code-speak into plain English.</p>
-            <div class="links">
-              <a class="btn primary" href="/BlankStare-Dev-English-to-English/">Read the guides</a>
-              <a class="btn" href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">Source</a>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="promise">
-      <h2>The promise every project keeps</h2>
-      <div class="promises">
-        <div class="promise"><b>Free first</b><span>A free way in, always. Paid options are optional and never gated behind signups you don't need.</span></div>
-        <div class="promise"><b>Never spends without asking</b><span>Anything that costs money stops and shows the price first.</span></div>
-        <div class="promise"><b>Your data stays yours</b><span>Keys and files live on your machine and go only where you send them.</span></div>
-        <div class="promise"><b>Limits in writing</b><span>What doesn't work yet is in the docs, under a heading that admits it.</span></div>
-      </div>
-    </section>
-
-    <footer>
-      <span>© Stravelakis · open source</span>
-      <span><a href="https://github.com/Stravelakis">github.com/Stravelakis</a></span>
-    </footer>
-  </div>
-
-  <script>
-    // Portfolio hub (repo standards §8): every public Stravelakis repo tagged
-    // with the GitHub topic "showcase" gets a card here automatically. Cards
-    // written by hand above stay as they are; this only adds the missing ones.
-    (async () => {
-      const grid = document.querySelector("#projects .grid");
-      const have = new Set([...grid.querySelectorAll('a[href*="github.com/Stravelakis/"]')]
-        .map((a) => a.href.split("github.com/Stravelakis/")[1].split(/[/?#]/)[0].toLowerCase()));
-      const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
-      try {
-        const res = await fetch("https://api.github.com/search/repositories?q=org:Stravelakis+topic:showcase+is:public&sort=updated&per_page=50", { headers: { Accept: "application/vnd.github+json" } });
-        if (!res.ok) return;
-        const { items = [] } = await res.json();
-        for (const r of items) {
-          if (have.has(r.name.toLowerCase())) continue;
-          const docs = r.homepage || `/${r.name}/`;
-          const tags = (r.topics || []).filter((t) => t !== "showcase").slice(0, 3);
-          const card = document.createElement("article");
-          card.className = "card";
-          card.innerHTML = `
-            <img class="shot" src="https://opengraph.githubassets.com/1/${esc(r.full_name)}" alt="${esc(r.name)}" loading="lazy" width="1200" height="630">
-            <div class="body">
-              <h3><a href="${esc(docs)}">${esc(r.name.replace(/[-_]/g, " "))}</a></h3>
-              ${tags.length ? `<div class="tags">${tags.map((t) => `<span>${esc(t)}</span>`).join("")}</div>` : ""}
-              <p>${esc(r.description || "")}</p>
-              <div class="links">
-                <a class="btn primary" href="${esc(docs)}">Try it now</a>
-                <a class="btn" href="${esc(r.html_url)}">Source</a>
-              </div>
-            </div>`;
-          grid.append(card);
-        }
-      } catch (e) { /* offline or rate-limited: the hand-written cards still show */ }
-    })();
-
-    // A quiet field of dots that drifts toward the pointer. Stops when the
-    // tab is hidden and does nothing at all for reduced-motion readers.
-    (() => {
-      const c = document.getElementById("dots"), x = c.getContext("2d");
-      const still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-      let w, h, dpr, pts = [], mx = -1e4, my = -1e4, raf;
-      const size = () => {
-        dpr = Math.min(devicePixelRatio || 1, 2);
-        w = c.width = innerWidth * dpr; h = c.height = innerHeight * dpr;
-        pts = []; const gap = 34 * dpr;
-        for (let y = gap / 2; y < h; y += gap) for (let X = gap / 2; X < w; X += gap) pts.push({ x: X, y, ox: X, oy: y });
-      };
-      const draw = () => {
-        x.clearRect(0, 0, w, h);
-        for (const p of pts) {
-          const dx = mx - p.ox, dy = my - p.oy, d = Math.hypot(dx, dy), r = 160 * dpr;
-          const k = d < r ? (1 - d / r) : 0;
-          p.x += (p.ox + dx * k * 0.18 - p.x) * 0.12; p.y += (p.oy + dy * k * 0.18 - p.y) * 0.12;
-          x.fillStyle = k ? `rgba(130,216,183,${0.18 + k * 0.6})` : "rgba(125,137,214,0.16)";
-          x.beginPath(); x.arc(p.x, p.y, (1.1 + k * 1.6) * dpr, 0, 6.283); x.fill();
-        }
-        if (!still) raf = requestAnimationFrame(draw);
-      };
-      addEventListener("resize", () => { size(); if (still) draw(); });
-      addEventListener("pointermove", (e) => { mx = e.clientX * dpr; my = e.clientY * dpr; });
-      addEventListener("pointerleave", () => { mx = my = -1e4; });
-      document.addEventListener("visibilitychange", () => { cancelAnimationFrame(raf); if (!document.hidden && !still) draw(); });
-      size(); draw();
-    })();
-  </script>
+<canvas id="dots" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<nav class="pairing-bar" aria-label="Stravelakis sites"><a class="pairing-link" href="https://stravelakis.com/">&larr; stravelakis.com</a><a class="pairing-link" href="https://docs.stravelakis.com/">All docs</a></nav>
+<main class="wrap">
+<section class="frame hero">
+<span class="label">docs.stravelakis.com</span>
+<h1>Guides you can <em>actually read</em></h1>
+<p class="lead">Documentation for small, honest tools. Plain English, no inflated claims, and every limitation written down. The open-source guides come in three reading levels.</p>
+<div class="btns"><a class="btn primary" href="#projects">See the projects</a><a class="btn" href="https://stravelakis.com/">stravelakis.com</a></div>
+</section>
+<section id="projects">
+<div class="grid">
+<article class="proj">
+<span><span class="pill "><i></i>Free download</span></span>
+<h3><a href="/image-forge/">Image Forge</a></h3>
+<p>Make hundreds of AI pictures from one sentence or a spreadsheet, with your own keys. Never spends money without asking.</p>
+<div class="btns"><a class="btn primary" href="/image-forge/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/image-forge/">Project page</a><a class="btn" href="https://github.com/Stravelakis/image-forge/releases/latest">Download</a><a class="btn" href="https://github.com/Stravelakis/image-forge">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill "><i></i>Open source</span></span>
+<h3><a href="/mystory/">My Story</a></h3>
+<p>A private, self-hosted journal. Speak or write in Greek or English, keep every word in plain files on your own machine.</p>
+<div class="btns"><a class="btn primary" href="/mystory/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/my-story/">Project page</a><a class="btn" href="https://github.com/Stravelakis/mystory">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill cool"><i></i>Source available</span></span>
+<h3><a href="/BlankStare-Dev-English-to-English/">BlankStare</a></h3>
+<p>A Chrome extension and personal translator for terminal-induced confusion: turns code-speak into plain English.</p>
+<div class="btns"><a class="btn primary" href="/BlankStare-Dev-English-to-English/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/blankstare/">Project page</a><a class="btn" href="https://github.com/Stravelakis/BlankStare-Dev-English-to-English">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill cool"><i></i>Source available</span></span>
+<h3><a href="/Video-Forge-BYOK/">Video Forge</a></h3>
+<p>A desktop studio for narrated, subtitled, talking-character videos in Greek and English. Your keys, rendered on your machine.</p>
+<div class="btns"><a class="btn primary" href="/Video-Forge-BYOK/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/video-forge/">Project page</a><a class="btn" href="https://github.com/Stravelakis/Video-Forge-BYOK">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill "><i></i>Open source</span></span>
+<h3><a href="/DogPark-Weather-WPPlugin-TELEX/">Dog Park Weather Rating</a></h3>
+<p>A WordPress block that turns live hourly weather into a 1 to 5 paw rating for any dog park. No API key needed.</p>
+<div class="btns"><a class="btn primary" href="/DogPark-Weather-WPPlugin-TELEX/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/dog-park-weather/">Project page</a><a class="btn" href="https://github.com/Stravelakis/DogPark-Weather-WPPlugin-TELEX">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill "><i></i>Open source</span></span>
+<h3><a href="/infra-guardian/">infra-guardian</a></h3>
+<p>A calm helper that watches your self-hosted setup and never changes anything without a backup and your yes.</p>
+<div class="btns"><a class="btn primary" href="/infra-guardian/">Read the docs</a><a class="btn" href="https://github.com/Stravelakis/infra-guardian">Source</a></div>
+</article>
+<article class="proj">
+<span><span class="pill warm"><i></i>On request</span></span>
+<h3><a href="/the-nein/">The Nein</a></h3>
+<p>Free AI endpoints, tested every day and published as a page and as JSON an agent can read.</p>
+<div class="btns"><a class="btn primary" href="/the-nein/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/the-nein/">Project page</a></div>
+</article>
+<article class="proj">
+<span><span class="pill warm"><i></i>On request</span></span>
+<h3><a href="/research-forge/">Research Forge</a></h3>
+<p>Give it a list of names. It looks each one up on the web and keeps only the facts it can prove.</p>
+<div class="btns"><a class="btn primary" href="/research-forge/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/research-forge/">Project page</a></div>
+</article>
+<article class="proj">
+<span><span class="pill warm"><i></i>On request</span></span>
+<h3><a href="/open-animations/">Open Animations 4WP</a></h3>
+<p>Animated backgrounds and text effects for WordPress and Elementor. No coding needed.</p>
+<div class="btns"><a class="btn primary" href="/open-animations/">Read the docs</a><a class="btn" href="https://stravelakis.com/project/open-animations/">Project page</a></div>
+</article>
+</div>
+</section>
+<section class="frame" id="promise" style="margin-top:20px">
+<h2>The promise every project keeps</h2>
+<div class="cards">
+<div class="card"><h3>Free first</h3><p>A free way in, always. Paid options are optional and never gated behind signups you do not need.</p></div>
+<div class="card"><h3>Never spends without asking</h3><p>Anything that costs money stops and shows the price first.</p></div>
+<div class="card"><h3>Your data stays yours</h3><p>Keys and files live on your machine and go only where you send them.</p></div>
+<div class="card"><h3>Limits in writing</h3><p>What does not work yet is in the docs, under a heading that admits it.</p></div>
+</div>
+</section>
+</main>
+<footer><span>&copy; Stravelakis</span><span><a href="https://github.com/Stravelakis">github.com/Stravelakis</a> &middot; <a href="https://docs.stravelakis.com/">All docs</a></span></footer>
+<script src="/docs.js" defer></script>
+<script>
+// Portfolio hub (repo standards section 8): every public Stravelakis repo tagged with the
+// GitHub topic "showcase" gets a card here automatically. Cards written by hand above
+// stay as they are; this only adds the missing ones.
+(async () => {
+  const grid = document.querySelector("#projects .grid");
+  const have = new Set([...grid.querySelectorAll('a[href*="github.com/Stravelakis/"]')]
+    .map((a) => a.href.split("github.com/Stravelakis/")[1].split(/[/?#]/)[0].toLowerCase()));
+  const esc = (t) => String(t ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+  try {
+    const res = await fetch("https://api.github.com/search/repositories?q=org:Stravelakis+topic:showcase+is:public&sort=updated&per_page=50", { headers: { Accept: "application/vnd.github+json" } });
+    if (!res.ok) return;
+    const { items = [] } = await res.json();
+    for (const r of items) {
+      if (have.has(r.name.toLowerCase())) continue;
+      const docs = r.homepage || `/${r.name}/`;
+      const card = document.createElement("article");
+      card.className = "proj";
+      card.innerHTML = `
+        <span><span class="pill"><i></i>Open source</span></span>
+        <h3><a href="${esc(docs)}">${esc(r.name.replace(/[-_]/g, " "))}</a></h3>
+        <p>${esc(r.description || "")}</p>
+        <div class="btns"><a class="btn primary" href="${esc(docs)}">Read the docs</a><a class="btn" href="${esc(r.html_url)}">Source</a></div>`;
+      grid.append(card);
+    }
+  } catch (e) { /* offline or rate-limited: the hand-written cards still show */ }
+})();
+</script>
 </body>
 </html>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Nein: docs</title>
+<meta name="description" content="The Nein watches eleven AI providers every day, verifies what is really free and really working, and publishes it as a readable page and as JSON an agent can use.">
+<link rel="canonical" href="https://docs.stravelakis.com/the-nein/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#080b19">
+<meta name="author" content="Stravelakis">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stravelakis documentation">
+<meta property="og:title" content="The Nein: docs">
+<meta property="og:description" content="The Nein watches eleven AI providers every day, verifies what is really free and really working, and publishes it as a readable page and as JSON an agent can use.">
+<meta property="og:url" content="https://docs.stravelakis.com/the-nein/">
+<meta property="og:image" content="https://docs.stravelakis.com/the-nein/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Nein: Agent-ready free AI, verified daily.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Nein: docs">
+<meta name="twitter:description" content="The Nein watches eleven AI providers every day, verifies what is really free and really working, and publishes it as a readable page and as JSON an agent can use.">
+<meta name="twitter:image" content="https://docs.stravelakis.com/the-nein/og-image.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/docs.css">
+</head>
+<body>
+<canvas id="dots" aria-hidden="true"></canvas>
+<div class="glow" aria-hidden="true"></div>
+<nav class="pairing-bar" aria-label="Stravelakis sites"><a class="pairing-link" href="https://stravelakis.com/">&larr; stravelakis.com</a><a class="pairing-link" href="https://docs.stravelakis.com/">All docs</a></nav>
+<main class="wrap">
+<section class="frame hero">
+<span class="pill warm"><i></i>On request</span>
+<h1>The Nein</h1>
+<p class="lead">Agent-ready free AI, verified daily.</p>
+<div class="btns"><a class="btn primary" href="https://stravelakis.com/#s-contact">Ask for it</a><a class="btn" href="https://stravelakis.com/project/the-nein/">Project page</a><a class="btn" href="/">All docs</a></div>
+</section>
+<section class="frame"><h2>What it does</h2><p>Free AI changes without warning. Models get added, quietly rate-limited, moved behind a paywall, or retired. The first you hear about it is your app breaking at 2am.</p>
+<p>The Nein watches eleven providers every day, checks what is really free and really working, and publishes the result twice: as a page people can read, and as JSON that an agent can read.</p>
+<p class="note">It tracks only things a program can call: models your own code reaches over an API, endpoints an agent can use unattended, free tiers and permanently zero-priced endpoints. Chat websites, desktop apps, paid tiers, and models you download and run yourself are out of scope.</p></section>
+<section class="frame"><h2>What makes it different</h2><div class="cards"><div class="card"><h3>Tested, not claimed</h3><p>Tool calling, JSON mode, streaming and system-prompt handling are checked with real requests. Many free endpoints list a model and then quietly ignore your tool definitions.</p></div><div class="card"><h3>Unknown is never "false"</h3><p>Untested is not unsupported. The page shows three states, not two.</p></div><div class="card"><h3>The fine print is a column</h3><p>Credit card or phone required, region limits, whether they train on your data, whether commercial use is allowed.</p></div><div class="card"><h3>A rate limit counts as success</h3><p>A 429 proves the model and the account exist. A server error counts as nothing: no new knowledge.</p></div><div class="card"><h3>Every number has a source</h3><p>Where it came from, when it was seen, and whether two sources disagreed. Disagreements are published, not hidden.</p></div><div class="card"><h3>It says when it does not know</h3><p>If a provider's terms could not be confirmed, the entry carries a "what we cannot confirm" note instead of a confident guess.</p></div></div></section>
+<section class="frame"><h2>For agents</h2><p>Every endpoint is open, cacheable and needs no login. Paths on a site that runs it:</p>
+<pre><code>/wp-json/nein/v1/status.json         health, freshness, next check
+/wp-json/nein/v1/models.json         every model, filterable
+/wp-json/nein/v1/providers.json      providers, confidence, conflicts
+/wp-json/nein/v1/capabilities.json   tested tool calling, JSON mode, streaming
+/wp-json/nein/v1/changes.json        rolling 90-day change feed
+/wp-json/nein/v1/sources.json        where every number came from
+/wp-json/nein/v1/pick                describe a need, get a ranked fallback chain</code></pre>
+<p><code>pick</code> is the useful one. Describe what you need (for example an image-input model with a large context window that supports tools) and it returns models that are free <em>and confirmed working right now</em>, in fallback order. Try rank 1, fall through on failure or rate limit.</p>
+<p>Every response says how old its data is and how fresh it is, so an agent can judge how far to trust it.</p></section>
+<section class="frame"><h2>How it is built</h2><p>Two halves. A private collector holds every credential, checks every provider and works out the state. It sends a signed report to a public WordPress plugin. The plugin holds no secrets, shows what it is told, and never calls out.</p>
+<p>The collector is not published. The interface between the two is: a payload schema anyone can build a collector against.</p>
+<table><tr><th>Check on every report</th><th>Stops</th></tr>
+<tr><td>Signed (HMAC-SHA256)</td><td>Forged reports</td></tr>
+<tr><td>Timestamp window</td><td>Stale replays</td></tr>
+<tr><td>Single-use nonce</td><td>Replay of the same report</td></tr>
+<tr><td>Strictly rising sequence number</td><td>Replay of a genuine older report</td></tr>
+<tr><td>Schema version</td><td>Misreading a future format</td></tr>
+<tr><td>Sanity quarantine</td><td>A broken parser reporting everything dead</td></tr></table></section>
+<section class="frame"><h2>Privacy and good manners</h2><div class="two"><div><h3>Privacy</h3><ul><li>Provider logos are self-hosted, so visiting the page tells no AI company anything.</li><li>No third-party requests, no trackers, no externally loaded fonts.</li><li>Analytics are front-end only: what was clicked and filtered. No IP storage.</li></ul></div>
+<div><h3>Being a good guest</h3><ul><li>One request per 20 to 40 seconds, randomised.</li><li>At most two immediate retries, only after a failure.</li><li>A hard daily request budget per provider.</li><li>A 429 is honoured, never worked around.</li><li>If a provider says something is wrong, it is corrected within 24 hours.</li></ul></div></div></section>
+<section class="frame"><h2>Who it is for</h2><ul><li>Developers and agent builders who need a free model that really works, and a fallback when it stops.</li><li>WordPress site owners who want to publish an honest, always-fresh page on free AI.</li></ul></section>
+<section class="frame"><h2>How to get it</h2><p>This one is <strong>on request</strong>. The code is private for now, so there is no public download.</p>
+<p>Tell me what you would use it for, and I will tell you what is possible.</p>
+<div class="btns"><a class="btn primary" href="https://stravelakis.com/#s-contact">Ask for it</a></div><table><tr><th>Part</th><th>Licence</th></tr><tr><td>WordPress plugin</td><td>GPL-2.0-or-later</td></tr><tr><td>Schema, signing spec, tools</td><td>MIT</td></tr><tr><td>Published JSON data</td><td>MIT / open data</td></tr><tr><td>Collector</td><td>Not published</td></tr></table>
+<p class="note">Unofficial and independent. Not affiliated with, endorsed by, or supported by any listed provider. Free tiers change without notice, so always verify before relying on it.</p></section>
+</main>
+<footer><span>&copy; Stravelakis</span><span><a href="https://github.com/Stravelakis">github.com/Stravelakis</a> &middot; <a href="https://docs.stravelakis.com/">All docs</a></span></footer>
+<script src="/docs.js" defer></script>
+</body>
+</html>
