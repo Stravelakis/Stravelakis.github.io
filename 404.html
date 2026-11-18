@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found</title>
+<meta name="robots" content="noindex">
+<script>
+  // Old short addresses: /video-forge/<page> lives at /Video-Forge-BYOK/<page>.
+  var moved = { "/video-forge/": "/Video-Forge-BYOK/" };
+  for (var from in moved) {
+    if (location.pathname.toLowerCase().indexOf(from) === 0) {
+      location.replace(moved[from] + location.pathname.slice(from.length) + location.search + location.hash);
+    }
+  }
+</script>
+<style>body{background:#080b19;color:#e8ecff;font:16px/1.5 system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0;padding:16px}a{color:#82D8B7}</style>
+</head>
+<body><p>This page doesn't exist. <a href="/">See all docs</a>.</p></body>
+</html>
